@@ -21,7 +21,16 @@ eg. "us-east-1"
 
 ## Configure Lambda function
 ### IAM Role Policy
-Go to the IAM service in the AWS Management console. Click on Roles and click the Create Role button. Choose Lambda and click next. On the Attach permissions policies page, don't check any boxes and just click Next Step. Name the role rds-copy-snapshots-role and click Create role. Click on the newly created role and click where it says Add inline policy. Switch to JSON tab. Copy the contents of the iam_role_policy.json file and paste it in the Policy Document box. Name the policy rds-copy-snapshots-policy and click Create policy.
+
+Go to the IAM service in the AWS Management console. 
+* Click on Roles and click the Create Role button. 
+* Choose Lambda and click next. 
+* On the Attach permissions policies page, don't check any boxes and just click Next Step. 
+* Name the role rds-copy-snapshots-role and click Create role. 
+* Click on the newly created role and click where it says Add inline policy. 
+* Switch to JSON tab. 
+* Copy the contents of the iam_role_policy.json file and paste it in the Policy Document box. 
+* Name the policy rds-copy-snapshots-policy and click Create policy.
 
 ### Create Lambda function
 #### Configure function
@@ -54,7 +63,13 @@ In the left navigator of Designer, at the top, choose CloudWatch Events and fill
 You should change the time to be after your backup window configured on your db instances.
 
 #### Test function
-You can test the function from the Lambda console. Click the Actions button and select Configure test event. Choose Scheduled Event from the drop down.  Configure the time of the simulated scheduled event to the current time in UTC.  Add the following parameter to the structure "noop": "True".  This will tell the script to not actually delete any snapshots, but to print that it would have. Now you can press the Save and Test button and you will see the results of the script running in the Lambda console.
+You can test the function from the Lambda console. 
+
+* Click the Actions button and select Configure test event. 
+* Choose Amazon Cloudwatch from the drop down.  
+* Configure the time of the simulated scheduled event to the current time in UTC.  
+* Add the following parameter to the structure "noop": "True".  This will tell the script to not actually delete any snapshots, but to print that it would have. 
+* Now you can press the Save and Test button and you will see the results of the script running in the Lambda console.
 
 #### CloudWatch logs
 You will be able to see the output when the script runs in the CloudWatch logs. Go to the CloudWatch service in the AWS Management console. Click on Logs and you will see the rds-copy-snapshots log group. Click in it and you will see a Log Stream for every time the script is executed which contains all the output of the script. Go back to the Log Group and click the Never Expire link in the Expire Events After column of the log group row. Change the Retention period to what you feel comfortable with.
